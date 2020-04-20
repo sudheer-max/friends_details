@@ -1,0 +1,48 @@
+#:import utils kivy.utils
+
+<HomeScreen>:
+    FloatLayout :
+        canvas : 
+            Color : 
+                rgb : utils.get_color_from_hex("#ffffff")
+            Rectangle : 
+                size : self.size
+                pos : self.pos
+        Label : 
+            # here is steak label 
+            text : ""
+            color : 0, 0, 0, 1
+            id : steak_label
+            size_hint : 1, .05
+            pos_hint : {"top" : 1, "left" : 1 }
+        ScrollView : 
+            size_hint : 1, .80
+            pos_hint : {"top" : .95, "left" : 1 }
+            GridLayout : 
+                # Banner Grid
+                id : banner_grid
+                cols : 1
+                spacing : 5, 5
+                size_hint_y : None
+                height : self.minimum_height
+                row_default_height : '100dp'
+                row_force_default : True
+        GridLayout : 
+            # three buttons here 
+            rows : 1
+            size_hint : 1, .15
+            pos_hint : {"top" : .15, "left" : 1}
+            ImageButton : 
+                source : "icons/add.png"
+                on_release : 
+                    print("Add friends fuctions")
+            ImageButton : 
+                source : "icons/united.png"
+                on_release : 
+                    print("See Friend fuctions")
+            ImageButton : 
+                source : "icons/settings.png"
+                on_release : 
+                    app.change_screen("setting_screen")
+
+

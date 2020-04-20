@@ -1,0 +1,17 @@
+<ChangeAvatarScreen>:
+    FloatLayout: 
+        canvas : 
+            Color : 
+                rgb : utils.get_color_from_hex("#ffffff")
+            Rectangle : 
+                size : self.size
+                pos : self.pos
+    ScrollView : 
+        GridLayout: 
+            cols : 3
+            id : avatar_grid
+            size_hint_y : None
+            height : self.minimum_height
+            row_default_height : '100dp'
+            row_force_default : True
+            

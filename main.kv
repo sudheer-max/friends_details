@@ -1,0 +1,62 @@
+#: include kv/homescreen.kv
+#: include kv/settingscreen.kv
+#: include kv/changeavatarscreen.kv
+#: include kv/loginscreen.kv
+
+
+GridLayout:
+    cols : 1
+    GridLayout : 
+        canvas : 
+            Color : 
+                rgb : utils.get_color_from_hex("#ffffff")
+            Rectangle : 
+                size : self.size
+                pos : self.pos
+        # top small icons for weather & excercise
+        rows : 1
+        size_hint : 1, .05
+        pos_hint : {"top" : 1, "left": 1}
+        Image : 
+            source : "icons/half-moon.png"
+        Image : 
+            source : "icons/stationary-bike.png"
+    FloatLayout : 
+        canvas : 
+            Color : 
+                rgb : utils.get_color_from_hex("#ffffff")
+            Rectangle : 
+                size : self.size
+                pos : self.pos
+        # top small icons for weather & avatar
+        rows : 1
+        size_hint : 1, .15
+        pos_hint : {"top" : .95, "left" : 1}
+        Image : 
+            source: "icons/half-moon.png"
+            size_hint : .25, .5
+            pos_hint : {"top" : .5, "right" : .25}
+        Image : 
+            source: "icons/avatars/yoga-pose.png"
+            size_hint : .5, .75
+            pos_hint : {"top" : 1, "right" : .75}
+            id : avatar_image
+        Image : 
+            source: "icons/stationary-bike.png"
+            size_hint : .25, .5
+            pos_hint : {"top" : .5, "right" : 1}
+    ScreenManager :
+        id : screen_manager
+        LoginScreen:
+            name : "login_screen"
+            id : login_screen
+        HomeScreen:
+            name : "home_screen"
+            id : home_screen
+        SettingScreen : 
+            name : "setting_screen"
+            id : setting_screen
+        ChangeAvatarScreen : 
+            name : "change_avatar_screen"
+            id : change_avatar_screen
+            

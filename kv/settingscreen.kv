@@ -1,0 +1,47 @@
+<SettingScreen>:
+    FloatLayout: 
+        canvas : 
+            Color : 
+                rgb : utils.get_color_from_hex("#ffffff")
+            Rectangle : 
+                size : self.size
+                pos : self.pos
+        Label : 
+            text : "Friend Id Number"
+            color : 0, 0, 0, 1
+            id : friend_id_label
+            size_hint : 1, .1
+            pos_hint : {"top" : 1, "left" : 1}
+        ImageButton : 
+            source : "icons/staff.png"
+            on_release : 
+                app.change_screen("change_avatar_screen")
+            size_hint : .5, .2
+            pos_hint : {"top" : .7, "left" : 1}
+        LabelButton : 
+            text : "Add Avatar Images"
+            color : 0, 0, 0, 1
+            on_release : 
+                app.change_screen("change_avatar_screen")
+            size_hint : .3, .2
+            pos_hint : {"top" : .7, "right" : .8}
+        ImageButton : 
+            source : "icons/sign-up.png"
+            on_release : 
+                print("Add Friend List")
+            size_hint : .5, .2
+            pos_hint : {"top" : .5, "left" : 1}
+        LabelButton : 
+            text : "Add Friend in list"
+            color : 0, 0, 0, 1
+            on_release : 
+                print("Add Friend List")
+            size_hint : .3, .2
+            pos_hint : {"top" : .5, "right" : .8}
+        ImageButton : 
+            source : "icons/swipe-left.png"
+            size_hint : .3, .1
+            pos_hint : {"top" : .2, "right" : .3}
+            on_release : 
+                app.change_screen("home_screen")
+
