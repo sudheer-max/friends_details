@@ -32,10 +32,11 @@ class LoginScreen(Screen):
 
 
 GUI = Builder.load_file('main.kv')
+
 class MainApp(App):
     my_friend_id = 1
     def build(self):
-        self.my_firebase = MyFirebase()
+        self.my_firebase = MyFirebase() 
         return GUI
 
     def on_start(self):
@@ -51,14 +52,19 @@ class MainApp(App):
             with open("refresh_token.txt", "r") as f:
                 refresh_token = f.read()
 
+
             id_token, local_id =  self.my_firebase.exchange_refresh_token(refresh_token)
 
-
+            sm = self.root.ids['screen_manager']
             # Get database to data
             result = requests.get("https://fitness-app-2c083.firebaseio.com/" + local_id + ".json?auth=" + id_token)
+            if result.ok:
+                sm.current = 'home_screen'
+            else:
+                sm.current = 'login_screen'
+
             # print("RESULT OK", result.ok)
             data = json.loads(result.content.decode())
-            # print(data)
             avatar_image = self.root.ids['avatar_image']
             avatar_image.source = "icons/avatars/" + data['avatar']
 
