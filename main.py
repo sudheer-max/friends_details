@@ -63,10 +63,13 @@ class MainApp(App):
             else:
                 sm.current = 'login_screen'
 
+            avatar_resp = self.fetch_avatar(id_token)
+
             # print("RESULT OK", result.ok)
+
             data = json.loads(result.content.decode())
             avatar_image = self.root.ids['avatar_image']
-            avatar_image.source = "icons/avatars/" + data['avatar']
+            avatar_image.source = "icons/avatars/" + avatar_resp
 
             # now get and update steak labels
             steak_label = self.root.ids['home_screen'].ids['steak_label']
@@ -92,6 +95,12 @@ class MainApp(App):
         except Exception as e:
             print(e)
             pass
+
+    def fetch_avatar(self, token):
+        url = "https://fitness-app-2c083.firebaseio.com/%s/avatar.json?auth=%s" % (self.my_friend_id, token) 
+        result = requests.get(url)
+        
+        return result.content    
 
     def change_avatar(self, image, widget_id):
         # change avatar image in app
